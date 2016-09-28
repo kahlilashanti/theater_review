@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   devise_for :users
-  resources :plays
+  resources :plays do
+    resources :reviews, except: [:show, :index]
+  end
 
   root 'plays#index'
   # The priority is based upon order of creation: first created -> highest priority.

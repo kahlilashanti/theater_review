@@ -3,6 +3,8 @@
     <div class="row">
       <div class="col-md-4">
         <%= image_tag @play.image.url(:medium) %>
+        <div class="star-rating" data-score=<%= @avg_review %> ></div>
+          <em><%= "#{@reviews.length} reviews" %></em>
         <div class="table-responsive">
           <table class="table">
             <tbody>
@@ -28,7 +30,24 @@
               </tr>
             </tbody>
           </table>
+          <%= link_to "Write A Review", new_play_review_path(@play) %>
         </div>
+      </div>
+      <div class="col-md-7 col-md-offset-1">
+        <h1 class="review_title"><%= @play.title %></h1>
+        <p><%= @play.description %></p>
+
+        <% if @reviews.blank? %>
+        <h3>No reviews just yet, would you like to add the first?</h3>
+        <%= link_to "Write Review", new_play_review_path(@play), class: "btn btn-danger" %>
+        <% else %>
+        <% @reviews.each do |review| %>
+        <div class="reviews">
+          <div class="star-rating" data-score=<%= review.rating %></div>
+          <p><%= review.comment %></p>
+        </div>
+        <% end %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -38,3 +57,13 @@
 
 <%= link_to 'Edit', edit_play_path(@play) %> |
 <%= link_to 'Back', plays_path %>
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function(){
+      return $(this).attr('data-score');
+    }
+  });
+</script>

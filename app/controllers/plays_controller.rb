@@ -11,6 +11,12 @@ class PlaysController < ApplicationController
   # GET /plays/1
   # GET /plays/1.json
   def show
+    @reviews = Review.where(play_id: @play.id).order("created_at DESC")
+    if @reviews.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
   end
 
   # GET /plays/new
