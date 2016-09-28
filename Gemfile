@@ -29,6 +29,12 @@ gem 'devise'
 
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
+gem 'searchkick'
+
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

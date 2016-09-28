@@ -2,6 +2,14 @@ class PlaysController < ApplicationController
   before_action :set_play, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
+  def search
+    if params[:search].present?
+      @plays = Play.search(params[:search])
+    else
+      @plays = Play.all
+    end
+  end
+
   # GET /plays
   # GET /plays.json
   def index
@@ -15,7 +23,7 @@ class PlaysController < ApplicationController
     if @reviews.blank?
       @avg_review = 0
     else
-      @avg_review = @reviews.average(:rating).round(2)
+      @avg_review = @reviews.average(:rating).present? ? @reviews.average(:rating).round(2) : 0
     end
   end
 

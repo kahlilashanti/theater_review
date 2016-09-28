@@ -1,4 +1,7 @@
 class Play < ActiveRecord::Base
+  require 'elasticsearch/model'
+
+  searchkick
   belongs_to :user
   has_many :reviews
 
