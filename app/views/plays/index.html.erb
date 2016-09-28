@@ -1,35 +1,19 @@
-<p id="notice"><%= notice %></p>
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Your Favorite Plays Reviewed</h1>
+    <p>Blah blah blag bpoijp  jpoij o oijpoij oijojpoij oipoijo.
+      oijpiojO. opjopijoim,poi0upjw849-8.
+    </p>
+    <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+<% end %>
 
-<h1>Listing Plays</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Play length</th>
-      <th>Performer</th>
-      <th>Rating</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @plays.each do |play| %>
-      <tr>
-        <td><%= play.title %></td>
-        <td><%= play.description %></td>
-        <td><%= play.play_length %></td>
-        <td><%= play.performer %></td>
-        <td><%= play.rating %></td>
-        <td><%= link_to 'Show', play %></td>
-        <td><%= link_to 'Edit', edit_play_path(play) %></td>
-        <td><%= link_to 'Destroy', play, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Play', new_play_path %>
+<div class= "row">
+  <% @plays.each do |play| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag play.image.url(:medium), class: 'image'), play %>
+      </div>
+    </div>
+  <% end %>
+</div>

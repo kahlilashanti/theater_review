@@ -1,29 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag @play.image.url(:medium) %>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Title:</strong></td>
+                <td><%= @play.title %></td>
+              </tr>
+              <tr>
+                <td><strong>Description:</strong></td>
+                <td><%= @play.description %></td>
+              </tr>
+              <tr>
+                <td><strong>Length:</strong></td>
+                <td><%= @play.play_length %></td>
+              </tr>
+              <tr>
+                <td><strong>Performer:</strong></td>
+                <td><%= @play.performer %></td>
+              </tr>
+              <tr>
+                <td><strong>Rating:</strong></td>
+                <td><%= @play.rating %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @play.title %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @play.description %>
-</p>
-
-<p>
-  <strong>Play length:</strong>
-  <%= @play.play_length %>
-</p>
-
-<p>
-  <strong>Performer:</strong>
-  <%= @play.performer %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @play.rating %>
-</p>
 
 <%= link_to 'Edit', edit_play_path(@play) %> |
 <%= link_to 'Back', plays_path %>
